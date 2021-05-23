@@ -4860,7 +4860,7 @@ private:
 
         std::vector<var> iterator_variables;
 
-        for (int i = 0; i < dimension_sizes.size(); i++)
+        for (int i = 0, end = dimension_sizes.size(); i < end; i++)
         {
             tiramisu::var *v = new
                 tiramisu::var(dimension_names[i], 0, dimension_sizes[i]);
@@ -5031,7 +5031,7 @@ public:
     {
 	std::vector<var> iterator_variables;
 
-	for (int s = 0; s < sizes.size(); s++)
+	for (int s = 0, end = sizes.size(); s < end; s++)
 	{
 	    var v(generate_new_computation_name(), 0, sizes[s]);
 	    iterator_variables.push_back(v);

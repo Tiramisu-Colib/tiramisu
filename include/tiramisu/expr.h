@@ -756,7 +756,7 @@ public:
             this->name = replace_with;
             return *this;
         }
-        for (int i = 0; i < this->op.size(); i++) {
+        for (int i = 0, end = this->op.size(); i < end; i++) {
             tiramisu::expr operand = this->get_operand(i);
             this->op[i] = operand.replace_op_in_expr(to_replace, replace_with);
         }
@@ -839,13 +839,13 @@ public:
             return equal;
         }
 
-        for (int i = 0; i < this->access_vector.size(); i++)
+        for (int i = 0, end = this->access_vector.size(); i < end; i++)
             equal = equal && this->access_vector[i].is_equal(e.access_vector[i]);
 
-        for (int i = 0; i < this->op.size(); i++)
+        for (int i = 0, end = this->op.size(); i < end; i++)
             equal = equal && this->op[i].is_equal(e.op[i]);
 
-        for (int i = 0; i < this->argument_vector.size(); i++)
+        for (int i = 0, end = this->argument_vector.size(); i < end; i++)
             equal = equal && this->argument_vector[i].is_equal(e.argument_vector[i]);
 
         if ((this->etype == e_val) && (e.etype == e_val))
@@ -1545,7 +1545,7 @@ public:
                     case tiramisu::o_lin_index:
                     case tiramisu::o_buffer:
                         str +=  this->get_name() + "(";
-                        for (int k = 0; k < this->get_access().size(); k++)
+                        for (int k = 0, end = this->get_access().size(); k < end; k++)
                         {
                             if (k != 0)
                             {
@@ -1557,7 +1557,7 @@ public:
                         break;
                     case tiramisu::o_call:
                         str +=  this->get_name() + "(";
-                        for (int k = 0; k < this->get_arguments().size(); k++)
+                        for (int k = 0, end = this->get_arguments().size(); k < end; k++)
                         {
                             if (k != 0)
                             {
@@ -1664,11 +1664,11 @@ public:
     expr apply_to_operands(std::function<expr(const expr &)> f) const
     {
         tiramisu::expr e{*this};
-        for (int i = 0; i < access_vector.size(); i++)
+        for (int i = 0, end = access_vector.size(); i < end; i++)
             e.access_vector[i] = f(e.access_vector[i]);
-        for (int i = 0; i < op.size(); i++)
+        for (int i = 0, end = op.size(); i < end; i++)
             e.op[i] = f(e.op[i]);
-        for (int i = 0; i < argument_vector.size(); i++)
+        for (int i = 0, end = argument_vector.size(); i < end; i++)
             e.argument_vector[i] = f(e.argument_vector[i]);
 
         return e;
